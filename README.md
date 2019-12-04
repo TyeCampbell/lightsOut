@@ -8,6 +8,9 @@ Lights Out is a logic/puzzle game, played on a gird of individual lights, which 
 
 You can click on a cell to toggle that light — but it also toggles the light above it, to the left of it, to the right of it, and below it. (Cells on an edge or in the corner won’t flip as many lights, since they are missing some neighbors).
 
+### What I've Learned
+
+This project is still in the works. Stay tuned.... 
 
 
 :thumbsup: *Thanks for checking out my work on GitHub! For more about me find me on Twitter [@TyeDev](https://twitter.com/tyedev) or visit my personal website [TyeCampbell.com](www.TyeCampbell.com).*
