@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+ import React, {Component} from 'react'
 import "./Cell.css"
 
 
@@ -28,7 +28,7 @@ class Cell extends Component {
 
   render() {
     let classes = "Cell" + (this.props.isLit ? " Cell-lit" : "");
-
+    console.log(this.props.isLit)
     return (
         <td className={classes} onClick={this.handleClick} />
     )
