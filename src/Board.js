@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Cell from "./Cell";
 import './Board.css';
+import { create } from "domain";
 
 
 /** Game board of Lights out.
@@ -32,8 +33,8 @@ import './Board.css';
 class Board extends Component {
 
   static defaultProps = {
-    nrows: 5, 
-    ncols: 5, 
+    nrows: 10, 
+    ncols: 10, 
     chanceLightStartsOn: Math.random() >= 0.5,
   }
 
@@ -41,16 +42,39 @@ class Board extends Component {
     super(props);
 
     // TODO: set initial state
+    this.createBoard = this.createBoard.bind(this);
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
 
   createBoard() {
     let board = [];
+
     // TODO: create array-of-arrays of true/false values
+    const nrows = this.props.nrows;
 
+    function genRows(rows) {
+      let allRows = [];
+      
+      for (let row = 0; row < rows; row++) {
+        
+        allRows = allRows.concat([Math.random() <= 0.5])
+  
+      }
 
-    return board
+      return allRows;
+    }
+
+       
+      
+      for (let col = 0; col < this.props.ncols; col++) {
+          board = board.concat([genRows(nrows)])
+        }
+      
+    console.log(board);
+      
+
+    // return board
   }
 
   /** handle changing a cell: update board & determine if winner */
@@ -95,6 +119,7 @@ class Board extends Component {
       
       <div>
         <h1>Lights Out</h1>
+        <h2>{this.createBoard()}</h2>
         <table className="Board">
           <tbody>
             <tr>
