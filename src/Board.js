@@ -33,8 +33,8 @@ import { create } from "domain";
 class Board extends Component {
 
   static defaultProps = {
-    nrows: 10, 
-    ncols: 10, 
+    nrows: 5, 
+    ncols: 5, 
     chanceLightStartsOn: Math.random() >= 0.5,
   }
 
@@ -48,33 +48,20 @@ class Board extends Component {
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
 
   createBoard() {
+    
+    // create array-of-arrays of true/false values
+
     let board = [];
 
-    // TODO: create array-of-arrays of true/false values
-    const nrows = this.props.nrows;
-
-    function genRows(rows) {
-      let allRows = [];
-      
-      for (let row = 0; row < rows; row++) {
-        
-        allRows = allRows.concat([Math.random() <= 0.5])
-  
+    for (let x = 0; x < this.props.nrows; x++){
+      let allRows = []
+      for (let y = 0; y < this.props.ncols; y++) {
+        allRows.push(Math.random() >= 0.5);     
       }
-
-      return allRows;
+      board.push(allRows);
     }
-
-       
-      
-      for (let col = 0; col < this.props.ncols; col++) {
-          board = board.concat([genRows(nrows)])
-        }
-      
-    console.log(board);
-      
-
-    // return board
+            
+    return board
   }
 
   /** handle changing a cell: update board & determine if winner */
@@ -115,22 +102,17 @@ class Board extends Component {
 
     // TODO
 
+
+
     return (
       
+
       <div>
         <h1>Lights Out</h1>
-        <h2>{this.createBoard()}</h2>
+        <h1>{console.log(this.createBoard())}</h1>
         <table className="Board">
           <tbody>
-            <tr>
-              <Cell isLit={true}/>
-              <Cell isLit={false}/>
-              <Cell isLit={false}/>
-              <Cell isLit={true}/>
-              <Cell isLit={true}/>
-            </tr>
           </tbody>
-
         </table>
       </div>
 
