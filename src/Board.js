@@ -104,22 +104,28 @@ class Board extends Component {
 
     // TODO
 
-    // make table board
+    // creates the table board
 
-    // TODO
+    let tableBoard = []; 
 
+    for (let x = 0; x < this.props.nrows; x++){
+      let createRow = []; 
+      for (let y = 0; y < this.props.ncols; y++){
+        createRow.push(<Cell key={x-y} isLit={this.state.board[x][y]}/>)
+      }
+      tableBoard.push(<tr>{createRow}</tr>)
+    }
 
-
-
+    const showBoard = tableBoard.map(component => component)
 
     return (
       
-
       <div>
         <h1>Lights Out</h1>
-        <h1>{console.log(this.createBoard())}</h1>
+        <h1>{console.log(tableBoard)}</h1>
         <table className="Board">
           <tbody>
+            {showBoard}
           </tbody>
         </table>
       </div>
