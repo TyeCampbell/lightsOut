@@ -111,7 +111,7 @@ class Board extends Component {
     for (let x = 0; x < this.props.nrows; x++){
       let createRow = []; 
       for (let y = 0; y < this.props.ncols; y++){
-        createRow.push(<Cell key={x-y} isLit={this.state.board[x][y]}/>)
+        createRow.push(<Cell key={x + "-" + y} isLit={this.state.board[x][y]}/>)
       }
       tableBoard.push(<tr>{createRow}</tr>)
     }
