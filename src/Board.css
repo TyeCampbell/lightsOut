@@ -1,3 +1,22 @@
 .Board {
   margin: 0 auto;
 }
+
+.board-title {
+  font-family: 'Iceland', cursive;
+  text-shadow:  10px 10px 25px #e100d7,
+                -10px -10px 25px #e100d7;
+  text-transform: uppercase;                
+  font-weight: bold;
+  font-size: 4em;
+}
+
+.board-title-accent {
+  text-shadow:  10px 10px 25px #00F3F3,
+                -10px -10px 25px #00F3F3;
+}
+
+.board-winner h1 {
+  font-family: 'Iceland', cursive;
+  font-size: 4em;
+}

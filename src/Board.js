@@ -50,14 +50,13 @@ class Board extends Component {
 
     this.createBoard = this.createBoard.bind(this);
     this.flipCellsAround = this.flipCellsAround.bind(this);
+    this.resetGame = this.resetGame.bind(this);
   }
 
-  /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
-
+  
+  // creates a random array-of-arrays of true/false values
   createBoard() {
-    
-    // creates an array-of-arrays of true/false values
-
+  
     let board = [];
 
     for (let x = 0; x < this.props.nrows; x++){
@@ -89,25 +88,22 @@ class Board extends Component {
     // Flip cell Clicked
     flipCell(x, y);
     // Flip cell North
-    //flipCell(x+1, y)
+    flipCell(x+1, y)
     // Flip cell South
-    //flipCell(x-1, y)
+    flipCell(x-1, y)
     // Flip cell East
-    //flipCell(x, y+1)
+    flipCell(x, y+1)
     // Flip cell West
-    //flipCell(x, y-1)
+    flipCell(x, y-1)
 
 
-    // win when every cell is turned off
+    // Checks if all cells are false, sets hasWon state to true when every cell is turned off
 
     let updateWonStatus = false 
 
-
     if (board.flat().find(cellStatus => cellStatus === true) === undefined) {
-      console.log("You win!!")
+      updateWonStatus = true;
     }
-
-    // TODO: determine is the game has been won
 
     this.setState({
       board: board, 
@@ -116,18 +112,21 @@ class Board extends Component {
 
    }
 
+   resetGame() {
+    this.setState({
+      board: this.createBoard(), 
+      hasWon: false,
+    })
+   }
 
   /** Render game board or winning message. */
 
   render() {
-
-    // if the game is won, just show a winning msg & render nothing else
-
-
+    
     // creates the table board
-
+    
     let tableBoard = []; 
-
+    
     for (let x = 0; x < this.props.nrows; x++){
       let createRow = []; 
       for (let y = 0; y < this.props.ncols; y++){
@@ -135,18 +134,43 @@ class Board extends Component {
       }
       tableBoard.push(<tr>{createRow}</tr>)
     }
-
+    
     const showBoard = tableBoard.map(component => component)
 
-    return (
+    // if the game is won, show a winning msg & render nothing else
+
+    let gameState; 
+
+    if (this.state.hasWon === false) {
       
-      <div>
-        <h1>Lights Out</h1>
-        <table className="Board">
+      gameState = 
+      
+      <div className='board-table'>
+        <table className='Board'>
           <tbody>
             {showBoard}
           </tbody>
         </table>
+      </div>      
+
+    }
+
+    if (this.state.hasWon === true) {
+
+      gameState = 
+
+        <div className='board-winner'> 
+          <h1>You win!</h1>
+          <button className='board-resetBtn' onClick={this.resetGame} >Start New Game</button>
+        </div>
+
+    }
+
+    return (
+      
+      <div>
+        <h1 className='board-title'><span className='board-title-accent'>Lights</span> Out</h1>
+        {gameState}
       </div>
 
     )
