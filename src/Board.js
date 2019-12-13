@@ -78,40 +78,42 @@ class Board extends Component {
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
     
-    console.log(board[x][y]);
-
     function flipCell(x, y) {
       // if this coord is actually on board, flip it
 
       if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
         board[y][x] = !board[y][x];
-        console.log(board[x][y])
       }
     }
     
-    // TODO: flip this cell and the cells around it
-    
-    // Flip cell clicked on
+    // Flip cell Clicked
     flipCell(x, y);
-    
     // Flip cell North
-    flipCell(x+1, y)
+    //flipCell(x+1, y)
     // Flip cell South
-    flipCell(x-1, y)
+    //flipCell(x-1, y)
     // Flip cell East
-    flipCell(x, y+1)
+    //flipCell(x, y+1)
     // Flip cell West
-    flipCell(x, y-1)
+    //flipCell(x, y-1)
 
 
     // win when every cell is turned off
+
+    let updateWonStatus = false 
+
+
+    if (board.flat().find(cellStatus => cellStatus === true) === undefined) {
+      console.log("You win!!")
+    }
+
     // TODO: determine is the game has been won
 
     this.setState({
       board: board, 
-      hasWon: false,
+      hasWon: updateWonStatus,
     });
-    
+
    }
 
 
@@ -121,7 +123,6 @@ class Board extends Component {
 
     // if the game is won, just show a winning msg & render nothing else
 
-    // TODO
 
     // creates the table board
 
