@@ -49,6 +49,7 @@ class Board extends Component {
     }
 
     this.createBoard = this.createBoard.bind(this);
+    this.flipCellsAround = this.flipCellsAround.bind(this);
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -76,23 +77,41 @@ class Board extends Component {
     let {ncols, nrows} = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
+    
+    console.log(board[x][y]);
 
-  
-
-    function flipCell(y, x) {
+    function flipCell(x, y) {
       // if this coord is actually on board, flip it
 
       if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
         board[y][x] = !board[y][x];
+        console.log(board[x][y])
       }
     }
-
+    
     // TODO: flip this cell and the cells around it
+    
+    // Flip cell clicked on
+    flipCell(x, y);
+    
+    // Flip cell North
+    flipCell(x+1, y)
+    // Flip cell South
+    flipCell(x-1, y)
+    // Flip cell East
+    flipCell(x, y+1)
+    // Flip cell West
+    flipCell(x, y-1)
+
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
 
-  //   this.setState({board, hasWon});
+    this.setState({
+      board: board, 
+      hasWon: false,
+    });
+    
    }
 
 
@@ -111,7 +130,7 @@ class Board extends Component {
     for (let x = 0; x < this.props.nrows; x++){
       let createRow = []; 
       for (let y = 0; y < this.props.ncols; y++){
-        createRow.push(<Cell key={x + "-" + y} isLit={this.state.board[x][y]}/>)
+        createRow.push(<Cell key={x + "-" + y} coord={x + "-" + y} flipCellsAround={this.flipCellsAround} isLit={this.state.board[x][y]}/>)
       }
       tableBoard.push(<tr>{createRow}</tr>)
     }
@@ -122,7 +141,6 @@ class Board extends Component {
       
       <div>
         <h1>Lights Out</h1>
-        <h1>{console.log(tableBoard)}</h1>
         <table className="Board">
           <tbody>
             {showBoard}
