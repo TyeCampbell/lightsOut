@@ -2,6 +2,10 @@
   margin: 0 auto;
 }
 
+table, th, td {
+  border: 10px;
+}
+
 .board-title {
   font-family: 'Iceland', cursive;
   text-shadow:  10px 10px 25px #e100d7,
@@ -20,3 +24,4 @@
   font-family: 'Iceland', cursive;
   font-size: 4em;
 }
+
