@@ -88,13 +88,13 @@ class Board extends Component {
     // Flip cell Clicked
     flipCell(x, y);
     // Flip cell North
-    flipCell(x+1, y)
+    //flipCell(x+1, y)
     // Flip cell South
-    flipCell(x-1, y)
+    //flipCell(x-1, y)
     // Flip cell East
-    flipCell(x, y+1)
+    //flipCell(x, y+1)
     // Flip cell West
-    flipCell(x, y-1)
+    //flipCell(x, y-1)
 
 
     // Checks if all cells are false, sets hasWon state to true when every cell is turned off
