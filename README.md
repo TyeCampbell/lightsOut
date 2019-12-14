@@ -10,7 +10,9 @@ You can click on a cell to toggle that light — but it also toggles the light a
 
 ### What I've Learned
 
-This project is still in the works. Stay tuned.... 
-
+* Creating and then rendering and array of arrays — all dynamically. 
+* Lifting State from a child component to parent. Need to use an event handler in this process.
+* Array.prototype.flat() with .find() works great for searcing through nested arrays
+* Margin property does not apply to table cell elements — use border-spacing in the table parent. 
 
 :thumbsup: *Thanks for checking out my work on GitHub! For more about me find me on Twitter [@TyeDev](https://twitter.com/tyedev) or visit my personal website [TyeCampbell.com](www.TyeCampbell.com).*
