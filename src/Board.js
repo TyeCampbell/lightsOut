@@ -133,10 +133,7 @@ class Board extends Component {
       tableBoard.push(<tr key={x} >{createRow}</tr>)
     }
     
-    const showBoard = tableBoard.map(component => component)
-
     // if the game is won, show a winning msg & render nothing else
-
     let gameState; 
 
     if (this.state.hasWon === false) {
@@ -146,7 +143,7 @@ class Board extends Component {
       <div className='board-table'>
         <table className='Board'>
           <tbody>
-            {showBoard}
+            {tableBoard}
           </tbody>
         </table>
       </div>      
