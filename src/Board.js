@@ -5,32 +5,6 @@ import { create } from "domain";
 import { randomBool } from "./Helpers";
 
 
-/** Game board of Lights out.
- *
- * Properties:
- *
- * - nrows: number of rows of board
- * - ncols: number of cols of board
- * - chanceLightStartsOn: float, chance any cell is lit at start of game
- *
- * State:
- *
- * - hasWon: boolean, true when board is all off
- * - board: array-of-arrays of true/false
- *
- *    For this board:
- *       .  .  .
- *       O  O  .     (where . is off, and O is on)
- *       .  .  .
- *
- *    This would be: [[f, f, f], [t, t, f], [f, f, f]]
- *
- *  This should render an HTML table of individual <Cell /> components.
- *
- *  This doesn't handle any clicks --- clicks are on individual cells
- *
- **/
-
 class Board extends Component {
 
   static defaultProps = {
@@ -42,7 +16,6 @@ class Board extends Component {
   constructor(props) {
     super(props);
 
-    // TODO: set initial state
     this.state = {
       board: this.createBoard(), 
       hasWon: false,
@@ -83,20 +56,15 @@ class Board extends Component {
       }
     }
     
-    // Flip cell Clicked
-    flipCell(x, y);
-    // Flip cell North
-    flipCell(x+1, y)
-    // Flip cell South
-    flipCell(x-1, y)
-    // Flip cell East
-    flipCell(x, y+1)
-    // Flip cell West
-    flipCell(x, y-1)
+    // Flip cell that is clicked on and around
+    flipCell(x, y); // Flip cell Clicked
+    flipCell(x+1, y) // Flip cell North
+    flipCell(x-1, y) // Flip cell South
+    flipCell(x, y+1) // Flip cell East
+    flipCell(x, y-1) // Flip cell West
 
 
     // Checks if all cells are false, sets hasWon state to true when every cell is turned off
-
     let updateWonStatus = false 
 
     if (board.flat().find(cellStatus => cellStatus === true) === undefined) {
@@ -117,12 +85,10 @@ class Board extends Component {
     })
    }
 
-  /** Render game board or winning message. */
 
   render() {
     
-    // creates the table board
-    
+    // creates the table board  
     let tableBoard = []; 
     
     for (let x = 0; x < this.props.nrows; x++){
